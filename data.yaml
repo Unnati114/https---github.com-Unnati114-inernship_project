@@ -1,0 +1,20 @@
+# =====================================
+# YOLOv8 Dataset Configuration File
+# =====================================
+
+# Dataset Paths
+train: archive/NEU-DET/train/images
+val: archive/NEU-DET/validation/images
+test: archive/NEU-DET/test/images
+
+# Number of Classes
+nc: 6
+
+# Class Names
+names:
+  0: crazing
+  1: inclusion
+  2: patches
+  3: pitted_surface
+  4: rolled_in_scale
+  5: scratches
