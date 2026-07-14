@@ -1,0 +1,136 @@
+/* BACKGROUND */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: white;
+}
+
+/* TOP BAR */
+.topbar {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 20px #00c6ff;
+}
+
+/* WRAPPER */
+.wrapper {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* PANELS */
+.panel {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 25px rgba(0,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* HEADINGS */
+h2, h3 {
+  color: #00e6e6;
+}
+
+/* INPUT */
+input[type="file"] {
+  margin: 10px 0;
+  padding: 8px;
+  background: #0f172a;
+  border: 1px solid #00c6ff;
+  border-radius: 8px;
+  color: white;
+}
+
+/* IMAGE PREVIEW */
+.preview {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 2px solid #00c6ff;
+  display: none;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #00ffcc, #0072ff);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffcc;
+}
+
+/* RESULT BOX */
+.result-box {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+
+/* STATUS */
+#statusText {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.status-pass {
+  color: #00ff7b;
+}
+
+.status-fail {
+  color: #ff4d4d;
+}
+
+/* LIST */
+ul {
+  padding-left: 18px;
+}
+
+li {
+  color: #00e6e6;
+  margin: 5px 0;
+}
+
+/* STATS */
+.stats {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+/* LINKS */
+.buttons {
+  margin-top: 15px;
+}
+
+.buttons a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 8px 12px;
+  background: #0072ff;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.buttons a:hover {
+  background: #00c6ff;
+}
