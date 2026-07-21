@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from ultralytics import YOLO
 import shutil
 import os
@@ -21,7 +22,12 @@ app.add_middleware(
 )
 
 # ---------------- MODEL ----------------
-model = YOLO("yolov8n.pt")
+# Load the custom trained model instead of default coco model
+MODEL_PATH = "runs/detect/runs/industrial_defect_detection/weights/best.pt"
+if os.path.exists(MODEL_PATH):
+    model = YOLO(MODEL_PATH)
+else:
+    model = YOLO("yolov8n.pt")
 
 # ---------------- FOLDERS ----------------
 UPLOAD_DIR = "uploads"
@@ -29,6 +35,9 @@ RESULT_DIR = "results"
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(RESULT_DIR, exist_ok=True)
+
+# Serve the results folder statically so the frontend can load annotated images
+app.mount("/results", StaticFiles(directory=RESULT_DIR), name="results")
 
 # ---------------- STATS ----------------
 stats = {"total": 0, "pass": 0, "fail": 0}
@@ -46,6 +55,10 @@ async def predict(file: UploadFile = File(...)):
 
     # YOLO inference
     results = model(file_path)
+
+    # Save the annotated image with plotted bounding boxes
+    result_image_path = os.path.join(RESULT_DIR, f"result_{file_id}.jpg")
+    results[0].save(filename=result_image_path)
 
     defects = []
     confidences = []
@@ -80,6 +93,7 @@ async def predict(file: UploadFile = File(...)):
         "defects": defects,
         "confidence": avg_conf,
         "image_path": file_path,
+        "annotated_image_url": f"http://127.0.0.1:8000/results/result_{file_id}.jpg",
         "stats": stats
     }
 

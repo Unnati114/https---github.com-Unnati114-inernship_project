@@ -55,6 +55,10 @@ async function upload() {
     const stats = data.stats || { total: 0, pass: 0, fail: 0 };
 
     // ---------------- UPDATE UI ----------------
+    if (data.annotated_image_url) {
+      document.getElementById("preview").src = data.annotated_image_url;
+    }
+
     const statusEl = document.getElementById("statusText");
     statusEl.innerText = status;
 
